@@ -46,6 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class prueba2 extends JFrame {
 	
@@ -106,7 +107,7 @@ public class prueba2 extends JFrame {
 				
 				vector[0] = sdf.format(fecha.getTime());
 				vector[1] = valor;
-				vector[2] = "Importante";
+				vector[2] = "";
 				
 				modelo.addRow(vector);
 				
@@ -136,9 +137,10 @@ public class prueba2 extends JFrame {
 		));
 		scrollPane.setViewportView(table_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(54, 102, 237, 20);
-		getContentPane().add(comboBox);
+		JComboBox<String> cmb = new JComboBox<>();
+		cmb.setModel(new DefaultComboBoxModel<String>(new String[] {"Normal", "Importante,", "Urgente"}));
+		cmb.setBounds(59, 99, 222, 20);
+		getContentPane().add(cmb);
 		
 		
 		
