@@ -52,6 +52,8 @@ public class prueba2 extends JFrame {
 	
 	DefaultTableModel modelo;
 	
+	DefaultComboBoxModel<String> model;
+	
 	Object vector [] = new Object[3];
 	
 	private JTextField textField;
@@ -91,6 +93,14 @@ public class prueba2 extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		/////////////comboBox/////////////
+		
+		JComboBox<String> cmb = new JComboBox<>();
+		cmb.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Importante", "Urgente"}));
+		cmb.setBounds(59, 99, 222, 20);
+		getContentPane().add(cmb);
+		
+		
 		//////////////Boton Aceptar////////////////////
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -102,17 +112,19 @@ public class prueba2 extends JFrame {
 				SimpleDateFormat sdf = new SimpleDateFormat ("dd'/'MM'/'Y");
 				
 				modelo = (DefaultTableModel) table_1.getModel();
+				model= (DefaultComboBoxModel) cmb.getModel();
 				
 				String valor = textField.getText();
 				
 				vector[0] = sdf.format(fecha.getTime());
 				vector[1] = valor;
-				vector[2] = "";
+				vector[2] = model.getElementAt(model.getIndexOf(model.getSelectedItem()));
 				
 				modelo.addRow(vector);
 				
 			}
 		});
+		
 		
 		////////////////Tabla///////////////////
 		
@@ -136,11 +148,6 @@ public class prueba2 extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(table_1);
-		
-		JComboBox<String> cmb = new JComboBox<>();
-		cmb.setModel(new DefaultComboBoxModel<String>(new String[] {"Normal", "Importante,", "Urgente"}));
-		cmb.setBounds(59, 99, 222, 20);
-		getContentPane().add(cmb);
 		
 		
 		
